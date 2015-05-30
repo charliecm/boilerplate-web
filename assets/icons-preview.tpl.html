@@ -1,0 +1,59 @@
+<!-- GENERATED -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{ fontName }}</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 32px;
+				font-family: 'Helvetica Neue', Arial, sans-serif;
+			}
+			.icon {
+				float: left;
+				padding-right: 24px;
+				padding-bottom: 12px;
+				width: 240px;
+				line-height: 24px;
+			}
+			.icon:before {
+				font-size: 24px;
+				margin-right: 12px;
+			}
+			@font-face {
+			    font-family: '{{ fontName }}';
+			    src: url('{{ fontPath }}{{ fontName }}.eot');
+			    src: url('{{ fontPath }}{{ fontName }}.eot?#iefix') format('embedded-opentype'), url('{{ fontPath }}{{ fontName }}.woff') format('woff'), url('{{ fontPath }}{{ fontName }}.ttf') format('truetype');
+			    font-weight: normal;
+			    font-style: normal;
+			}
+			.{{ baseClass }}:before {
+			    font-family: '{{ fontName }}';
+			    display: inline-block;
+			    vertical-align: middle;
+			    line-height: 1;
+			    font-weight: normal;
+			    font-style: normal;
+			    speak: none;
+			    text-decoration: inherit;
+			    text-transform: none;
+			    text-rendering: optimizeLegibility;
+			    -webkit-font-smoothing: antialiased;
+			    -moz-osx-font-smoothing: grayscale;
+			}
+			{% for glyph in glyphs %}
+			.{{ classPrefix }}{{ glyph.name }}:before {
+			    content: '\{{ glyph.code }}';
+			}
+			{% endfor %}
+	</style>
+</head>
+<body>
+	<h1>
+		{{ fontName }}
+	</h1>
+	{% for glyph in glyphs %}
+		<div class="icon {{ classPrefix }}{{ glyph.name }} {{ baseClass }}">{{ classPrefix }}{{ glyph.name }}</div>
+	{% endfor %}
+</body>

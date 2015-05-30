@@ -1,0 +1,68 @@
+// Functions + Mixins
+
+// ----------------------------------------------------------------------------
+// Functions
+// ----------------------------------------------------------------------------
+
+// Converts unit to em
+@function em($target, $context: $em-base)
+    @return ($target / $context) + 0em
+
+// Converts unit to rem
+@function rem($target)
+    @return ($target / $em-base) + 0rem
+
+// ----------------------------------------------------------------------------
+// Mixins
+// ----------------------------------------------------------------------------
+
+// Fluid width
+=fluid-width($target, $context)
+    width: percentage($target / $context)
+    max-width: $target
+
+// Wrap container
+=wrap($target, $context)
+    +fluid-width($target, $context)
+    position: relative
+    margin-left: auto
+    margin-right: auto
+
+// Responsive breakpoints
+// Greater than
+=bp-gt($breakpoint)
+    @media only screen and (min-width: rem($breakpoint + 1))
+        @content
+// Less than
+=bp-lt($breakpoint)
+    @media only screen and (max-width: rem($breakpoint))
+        @content
+// Between
+=bp-bt($breakpoint-min, $breakpoint-max)
+    @media only screen and (min-width: rem($breakpoint-min + 1)) and (max-width: rem($breakpoint-max))
+        @content
+
+// High-density display
+=hdpi()
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi)
+        @content
+
+// Placeholder styling
+=input-placeholder
+    &.placeholder
+        @content
+    &:-moz-placeholder
+        @content
+    &::-moz-placeholder
+        @content
+    &:-ms-input-placeholder
+        @content
+    &::-webkit-input-placeholder
+        @content
+
+// Selection
+=selection
+    ::selection
+        @content
+    ::-moz-selection
+        @content

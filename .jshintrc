@@ -1,0 +1,17 @@
+{
+    "node": true,
+    "browser": true,
+    "esnext": true,
+    "bitwise": true,
+    "curly": true,
+    "eqeqeq": true,
+    "latedef": true,
+    "noarg": true,
+    "undef": true,
+    "unused": true,
+    "strict": true,
+    "mocha": true,
+    "globals": {
+        "expect": false
+    }
+}

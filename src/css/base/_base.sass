@@ -1,0 +1,44 @@
+/**
+ * Base
+ */
+
+*, *:before, *:after
+    box-sizing: border-box
+
+html
+    height: 100%
+    font-size: 100%
+
+body
+    height: 100%
+    background-color: $color-bg
+    font-family: $font-family-primary
+    font-weight: normal
+    font-size: 1rem
+    line-height: 1.3125
+    color: $color-text
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+
++selection
+    background: $color-blue
+    color: white
+
+img
+    vertical-align: middle
+
+a
+    color: $color-anchor
+    .no-touch &:hover
+        color: $color-anchor-hover
+
+code
+    font-family: $font-family-code
+
+p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote
+    margin-top: 0
+    margin-bottom: 1rem
+
+// h1
+// h2
+// h3
+// h4
