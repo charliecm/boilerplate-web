@@ -56,9 +56,10 @@ gulp.task('default', [ 'server:dev', 'server:dist', 'sass', 'jsVendors' ], funct
         gulp.start('icons');
     });
     // CSS
-    watch(config.paths.css + '**/*.sass', function() {
+    watch(config.paths.src + '**/*.{sass,scss}', function() {
         gulp.start('watch:sass');
     });
+    // JS
     gulp.start('watch:js');
     gulp.start('watch:test');
 });

@@ -62,7 +62,8 @@ config.icons = {
         fontName: 'icon',
         baseClass: 'icon',
         classPrefix: 'icon-',
-        fontPath: '../src/fonts/'
+        fontPath: '../src/fonts/',
+        sizes: [ 16, 24, 32, 48, 64, 72, 96 ]
     }
 };
 

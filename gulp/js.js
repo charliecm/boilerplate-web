@@ -9,6 +9,7 @@
 
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
+    notify = require('gulp-notify'),
     browserify = require('browserify'),
     watchify = require('watchify'),
     source = require('vinyl-source-stream'),
@@ -25,27 +26,26 @@ function bundleVendors() {
         bundler.require(vendor);
     });
     return bundler.bundle()
-        .on('error', gutil.log.bind(gutil, 'bundleVendors:browserify:'))
+        .on('error', notify.onError('<%= error.message %>'))
         .pipe(source(config.js.vendors.name))
         .pipe(buffer())
-        .pipe(gulp.dest(dest));
+        .pipe(gulp.dest(dest))
+        .pipe(notify('Vendors compiled.'));
 }
 
 // Bundle app
 function bundleApp(isWatch) {
     var options = assign({}, watchify.args, config.js.app.options, isWatch ? config.js.watch : config.js.app.build),
         dest = (isWatch ? config.js.app.destDev : config.js.app.dest),
-        bundler = browserify(options)
-            .on('error', function(msg) {
-                throw new gutil.PluginError('bundleApp:browserify', msg);
-            });
+        bundler = browserify(options).on('error', notify.onError('<%= error.message %>'));
     config.js.vendors.requires.forEach(function(vendor) {
         bundler.external(vendor);
     });
     function bundle() {
         return bundler.bundle()
             .pipe(source(config.js.app.name))
-            .pipe(gulp.dest(dest));
+            .pipe(gulp.dest(dest))
+            .pipe(notify('App compiled.'));
     }
     if (isWatch) {
         bundler = watchify(bundler)
