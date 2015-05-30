@@ -9,7 +9,7 @@
     font-weight: normal
     font-style: normal
 
-@mixin icon
+=icon
     &:before
         display: inline-block
         font-family: 'icon'
@@ -26,12 +26,57 @@
     &:hover
         text-decoration: none !important
 
-.icon-add-24, .icon
-    @include icon()
+
+=icon-16
+    &:before
+        font-size: 1.6rem
+.icon-16
+    +icon-16
+
+=icon-24
+    &:before
+        font-size: 1.6rem
+.icon-24
+    +icon-24
+
+=icon-32
+    &:before
+        font-size: 1.6rem
+.icon-32
+    +icon-32
+
+=icon-48
+    &:before
+        font-size: 1.6rem
+.icon-48
+    +icon-48
+
+=icon-64
+    &:before
+        font-size: 1.6rem
+.icon-64
+    +icon-64
+
+=icon-72
+    &:before
+        font-size: 1.6rem
+.icon-72
+    +icon-72
+
+=icon-96
+    &:before
+        font-size: 1.6rem
+.icon-96
+    +icon-96
+
+
+.icon, .icon-add-24, 
+    +icon
 
 .icon-add-24:before
     content: '\e001'
-@mixin icon-add-24()
+=icon-add-24()
+    +icon
     &:before
         content: '\e001'
 

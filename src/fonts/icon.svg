@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?> 
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <font id="icon" horiz-adv-x="24">
+    <font-face font-family="icon"
+      units-per-em="96" ascent="84"
+      descent="12" />
+    <missing-glyph horiz-adv-x="0" />
+    <glyph glyph-name="add-24"
+      unicode="&#xE001;"
+      horiz-adv-x="96" d=" M52 32L52 8L44 8L44 32L20 32L20 40L44 40L44 64L52 64L52 40L76 40L76 32L52 32z" />
+  </font>
+</defs>
+</svg>

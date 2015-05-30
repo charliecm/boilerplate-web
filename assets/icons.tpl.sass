@@ -9,7 +9,7 @@
     font-weight: normal
     font-style: normal
 
-@mixin {{ baseClass }}
+={{ baseClass }}
     &:before
         display: inline-block
         font-family: '{{ fontName }}'
@@ -26,12 +26,21 @@
     &:hover
         text-decoration: none !important
 
-{% for glyph in glyphs %}.{{ classPrefix }}{{ glyph.name }}, {% endfor %}.{{ baseClass }}
-    @include {{ baseClass }}()
+{% for size in sizes %}
+={{ classPrefix }}{{ size }}
+    &:before
+        font-size: 1.6rem
+.{{ classPrefix }}{{ size }}
+    +{{ classPrefix }}{{ size }}
+{% endfor %}
+
+.{{ baseClass }}, {% for glyph in glyphs %}.{{ classPrefix }}{{ glyph.name }}, {% endfor %}
+    +{{ baseClass }}
 {% for glyph in glyphs %}
 .{{ classPrefix }}{{ glyph.name }}:before
     content: '\{{ glyph.code }}'
-@mixin {{ classPrefix }}{{ glyph.name }}()
+={{ classPrefix }}{{ glyph.name }}()
+    +{{ baseClass }}
     &:before
         content: '\{{ glyph.code }}'
 {% endfor %}
