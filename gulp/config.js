@@ -83,7 +83,9 @@ config.js = {
     vendors: {
         name: 'vendors.js',
         dest: config.paths.js,
-        requires: [],
+        requires: [
+            // TODO: Add vendors
+        ],
         options: {
             transform: [
                 // [ 'browserify-shim', {
