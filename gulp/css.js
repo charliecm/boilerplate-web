@@ -13,7 +13,7 @@ var gulp = require('gulp'),
     config = require('./config');
 
 // Compile SASS, then autoprefix and minify them
-gulp.task('sass', [ 'icons' ], function() {
+function compileSASS() {
     return gulp.src(config.css.src)
         .pipe(sass({
             style: 'compressed'
@@ -25,6 +25,12 @@ gulp.task('sass', [ 'icons' ], function() {
         .pipe(cssmin())
         .pipe(gulp.dest(config.css.dest))
         .pipe(notify('SASS compiled: <%= file.path %>'));
+}
+
+gulp.task('sass', function() {
+    return compileSASS();
 });
 
-gulp.task('css', [ 'sass' ]);
+gulp.task('css', [ 'icons' ], function() {
+    return gulp.start('sass');
+});
