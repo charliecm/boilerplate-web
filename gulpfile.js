@@ -62,7 +62,7 @@ gulp.task('default', [ 'server:dev', 'server:dist', 'sass', 'vendors' ], functio
     });
     // CSS
     watch(config.paths.src + '**/*.{sass,scss}', function() {
-        gulp.start('watch:sass');
+        gulp.start('sass');
     });
     // JS
     gulp.start('watch:js');
