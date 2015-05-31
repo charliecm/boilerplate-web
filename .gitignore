@@ -3,5 +3,6 @@ node_modules/
 dist/
 
 # Files
+src/js/app.js
 npm-debug.log
 *.sublime-*
