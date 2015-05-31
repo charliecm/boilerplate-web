@@ -12,11 +12,13 @@ Yet another web application boilerplate with the following tools:
 
 Run `npm install` and then `node install` to setup project for development.
 
-Run `gulp` to watch files for development and run a server at `http://localhost:8070` (dev) and `http://localhost:8071` (dist).
+Run `gulp` to watch files for development and run a server at `http://localhost:8070`.
+
+Run `gulp jsVendors` to manually regenerate the vendors bundle.
 
 Run `gulp build' to build files for distribution in `dist/`.
 
-Run `gulp jsVendors` to manually regenerate the vendors bundle.
+Run `gulp server` to run a server from `dist/` at `http://localhost:8071`.
 
 Run `gulp test` to run unit tests.
 

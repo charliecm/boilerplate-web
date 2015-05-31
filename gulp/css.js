@@ -8,12 +8,14 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
+    connect = require('gulp-connect'),
+    pipeIf = require('gulp-if'),
     notify = require('gulp-notify'),
     cssmin = require('gulp-cssmin'),
     config = require('./config');
 
 // Compile SASS, then autoprefix and minify them
-function compileSASS() {
+function compileSASS(isWatch) {
     return gulp.src(config.css.src)
         .pipe(sass({
             style: 'compressed'
@@ -24,13 +26,14 @@ function compileSASS() {
         }))
         .pipe(cssmin())
         .pipe(gulp.dest(config.css.dest))
+        .pipe(pipeIf(isWatch, connect.reload()))
         .pipe(notify('SASS compiled: <%= file.path %>'));
 }
 
-gulp.task('sass', function() {
+gulp.task('css', [ 'icons' ], function() {
     return compileSASS();
 });
 
-gulp.task('css', [ 'icons' ], function() {
-    return gulp.start('sass');
+gulp.task('watch:css', function() {
+    return compileSASS(true);
 });

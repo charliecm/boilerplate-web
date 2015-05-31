@@ -43,7 +43,7 @@ function bundleApp(isWatch) {
     });
     function bundle() {
         return bundler.bundle()
-            .on('error', notify.onError('<%= error.message %>'));
+            .on('error', notify.onError('<%= error.message %>'))
             .pipe(source(config.js.app.name))
             .pipe(gulp.dest(dest))
             .pipe(notify('App compiled: <%= file.path %>'));
@@ -52,7 +52,7 @@ function bundleApp(isWatch) {
         bundler = watchify(bundler)
             .on('update', bundle)
             .on('log', function(msg) {
-                gutil.log('bundleApp:', msg);
+                gutil.log('Created:', config.js.app.dest + config.js.app.name, msg);
             });
     }
     return bundle();

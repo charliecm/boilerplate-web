@@ -55,18 +55,23 @@ gulp.task('copy', function() {
 });
 
 // Watch (default)
-gulp.task('default', [ 'server:dev', 'server:dist', 'sass', 'vendors' ], function() {
+gulp.task('default', [ 'server:dev', 'sass', 'vendors' ], function() {
     // Icons
     watch(config.icons.src, function() {
         gulp.start('icons');
     });
     // CSS
     watch(config.paths.src + '**/*.{sass,scss}', function() {
-        gulp.start('sass');
+        gulp.start('watch:css');
     });
     // JS
     gulp.start('watch:js');
     gulp.start('watch:test');
+});
+
+// Server
+gulp.task('server', function(done) {
+    sequence('build', 'server:dist', done);
 });
 
 // Build

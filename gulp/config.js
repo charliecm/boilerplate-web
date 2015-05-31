@@ -23,13 +23,7 @@ config.server = {
     dev: {
         root: config.paths.src,
         port: 8070,
-        livereload: {
-            enable: true,
-            filter: function(file) {
-                // Whitelist files
-                return (file.match(/\.(css|html|js)$/i));
-            }
-        }
+        livereload: true
     },
     dist: {
         root: config.paths.dist,
