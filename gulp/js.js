@@ -38,12 +38,12 @@ function bundleApp(isWatch) {
     var options = assign({}, watchify.args, config.js.app.options, isWatch ? config.js.watch : config.js.app.build),
         dest = (isWatch ? config.js.app.destDev : config.js.app.dest),
         bundler = browserify(options)
-            .on('error', notify.onError('<%= error.message %>'));
     config.js.vendors.requires.forEach(function(vendor) {
         bundler.external(vendor);
     });
     function bundle() {
         return bundler.bundle()
+            .on('error', notify.onError('<%= error.message %>'));
             .pipe(source(config.js.app.name))
             .pipe(gulp.dest(dest))
             .pipe(notify('App compiled: <%= file.path %>'));
