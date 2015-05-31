@@ -28,7 +28,7 @@ module.exports = function(config) {
             insertGlobals: true,
             paths: [ gulpConfig.paths.js ],
             transform: [
-                // 'browserify-shim'
+                'browserify-shim'
             ],
             configure: function(bundler) {
                 bundler.on('prebundle', function() {

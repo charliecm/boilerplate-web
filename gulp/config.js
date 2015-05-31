@@ -83,7 +83,7 @@ config.js = {
         insertGlobals: true,
         fullPaths: true,
         transform: [
-            // 'browserify-shim'
+            'browserify-shim'
         ]
     },
     vendors: {
@@ -94,9 +94,9 @@ config.js = {
         ],
         options: {
             transform: [
-                // [ 'browserify-shim', {
-                //     global: true
-                // } ],
+                [ 'browserify-shim', {
+                    global: true
+                } ],
                 [ 'uglifyify', {
                     global: true,
                     ignore: [
@@ -116,7 +116,7 @@ config.js = {
         },
         build: {
             transform: [
-                // 'browserify-shim',
+                'browserify-shim',
                 [ 'stripify', {
                     replacement: '(0)'
                 } ],
