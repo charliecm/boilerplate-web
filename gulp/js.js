@@ -30,14 +30,15 @@ function bundleVendors() {
         .pipe(source(config.js.vendors.name))
         .pipe(buffer())
         .pipe(gulp.dest(dest))
-        .pipe(notify('Vendors compiled.'));
+        .pipe(notify('Vendors compiled: <%= file.path %>'));
 }
 
 // Bundle app
 function bundleApp(isWatch) {
     var options = assign({}, watchify.args, config.js.app.options, isWatch ? config.js.watch : config.js.app.build),
         dest = (isWatch ? config.js.app.destDev : config.js.app.dest),
-        bundler = browserify(options).on('error', notify.onError('<%= error.message %>'));
+        bundler = browserify(options)
+            .on('error', notify.onError('<%= error.message %>'));
     config.js.vendors.requires.forEach(function(vendor) {
         bundler.external(vendor);
     });
@@ -45,7 +46,7 @@ function bundleApp(isWatch) {
         return bundler.bundle()
             .pipe(source(config.js.app.name))
             .pipe(gulp.dest(dest))
-            .pipe(notify('App compiled.'));
+            .pipe(notify('App compiled: <%= file.path %>'));
     }
     if (isWatch) {
         bundler = watchify(bundler)
@@ -57,7 +58,7 @@ function bundleApp(isWatch) {
     return bundle();
 }
 
-gulp.task('jsVendors', function() {
+gulp.task('vendors', function() {
     return bundleVendors();
 });
 
@@ -69,6 +70,6 @@ gulp.task('watch:jsApp', function() {
     return bundleApp(true);
 });
 
-gulp.task('js', [ 'jsApp', 'jsVendors' ]);
+gulp.task('js', [ 'jsApp', 'vendors' ]);
 
 gulp.task('watch:js', [ 'watch:jsApp' ]);

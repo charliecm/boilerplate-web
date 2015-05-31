@@ -13,6 +13,7 @@ require('./gulp/test');
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     watch = require('gulp-watch'),
+    notify = require('gulp-notify'),
     sequence = require('run-sequence'),
     del = require('del'),
     config = require('./gulp/config');
@@ -46,11 +47,15 @@ gulp.task('copy', function() {
             '!' + config.paths.css + '**/*',
             '!' + config.paths.js + '**/*'
         ])
-        .pipe(gulp.dest(config.paths.dist));
+        .pipe(gulp.dest(config.paths.dist))
+        .pipe(notify({
+            message: 'Build completed!',
+            onLast: true
+        }));
 });
 
 // Watch (default)
-gulp.task('default', [ 'server:dev', 'server:dist', 'sass', 'jsVendors' ], function() {
+gulp.task('default', [ 'server:dev', 'server:dist', 'sass', 'vendors' ], function() {
     // Icons
     watch(config.icons.src, function() {
         gulp.start('icons');
