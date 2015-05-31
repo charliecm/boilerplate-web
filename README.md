@@ -1,6 +1,6 @@
 # Web App Boilerplate
 
-A simple web application boilerplate with the following tools:
+Yet another web application boilerplate with the following tools:
 
 - [Gulp](https://github.com/gulpjs/gulp)
 	- [Icon fonts](https://www.npmjs.com/package/gulp-iconfont) (from SVGs)
