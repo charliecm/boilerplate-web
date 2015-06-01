@@ -38,7 +38,7 @@ gulp.task('copy', function() {
     // JS
     gulp.src([
             config.paths.js + '*.js',
-            '!' + config.paths.js + config.js.app.name
+            '!' + config.js.app.dest + config.js.app.name
         ])
         .pipe(gulp.dest(config.paths.dist + 'js/'));
     // Everything else
